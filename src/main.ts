@@ -1,6 +1,6 @@
 import * as core from '@actions/core'
 import got from 'got'
-import * as yaml from 'js-yaml'
+import yaml from 'js-yaml'
 
 /** Supported push message format https://open.feishu.cn/document/ukTMukTMukTM/ucTM5YjL3ETO24yNxkjN#8b0f2a1b */
 enum MsgType {

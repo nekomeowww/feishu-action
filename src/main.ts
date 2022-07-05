@@ -34,7 +34,6 @@ async function postNormalMessage(msg_type: MsgType, content: string): Promise<st
 
 /** Send interactive message */
 async function postInteractiveMessage(msg_type: MsgType, cardContent: string): Promise<string> {
-  
   return await post({
     msg_type,
     card: yaml.load(cardContent)
@@ -59,6 +58,7 @@ async function postMessage(): Promise<string> {
 }
 
 async function post(body: Message | InteractiveMessage): Promise<string> {
+  console.log(JSON.stringify(body))
   core.debug(JSON.stringify(body))
 
   const url: string = core.getInput('url')

@@ -2,7 +2,6 @@ import * as core from '@actions/core'
 import got from 'got'
 import yaml from 'js-yaml'
 
-
 /** Supported push message format https://open.feishu.cn/document/ukTMukTMukTM/ucTM5YjL3ETO24yNxkjN#8b0f2a1b */
 enum MsgType {
   Text = 'text',
@@ -25,7 +24,10 @@ interface InteractiveMessage {
 }
 
 /** Send text/post/image/sharechat message */
-async function postNormalMessage(msg_type: MsgType, content: string): Promise<string> {
+async function postNormalMessage(
+  msg_type: MsgType,
+  content: string
+): Promise<string> {
   return await post({
     msg_type,
     content: yaml.load(content)
@@ -33,7 +35,10 @@ async function postNormalMessage(msg_type: MsgType, content: string): Promise<st
 }
 
 /** Send interactive message */
-async function postInteractiveMessage(msg_type: MsgType, cardContent: string): Promise<string> {
+async function postInteractiveMessage(
+  msg_type: MsgType,
+  cardContent: string
+): Promise<string> {
   return await post({
     msg_type,
     card: yaml.load(cardContent)
@@ -52,7 +57,8 @@ async function postMessage(): Promise<string> {
       return await postNormalMessage(msg_type, content)
     case MsgType.Interactive:
       return await postInteractiveMessage(msg_type, content)
-    default: // fallback
+    default:
+      // fallback
       return await postNormalMessage(msg_type, content)
   }
 }
